@@ -14,7 +14,7 @@ export type PostgresMockCreationOptions = {
   /**
    * Advanced options for expert use cases.
    */
-  advanced?: {
+  subtle?: {
     v86Options?: any,
   },
 };

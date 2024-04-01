@@ -13,7 +13,7 @@ const binariesPromise = Promise.all([
 
 const memorySizeMb = 128;
 
-export async function bootEmulator(options: { advanced?: { v86Options?: any } }): Promise<any> {
+export async function bootEmulator(options: { subtle?: { v86Options?: any } }): Promise<any> {
   const startTime = performance.now();
   const t = () => `t=${Math.round(performance.now() - startTime)}ms`;
   Logger.log(t(), "Starting emulator boot sequence");
@@ -38,7 +38,7 @@ export async function bootEmulator(options: { advanced?: { v86Options?: any } })
     disable_speaker: true,
     acpi: true,
     initial_state: pgmockState128MbMemory,
-    ...Object.fromEntries(Object.entries(options?.advanced?.v86Options ?? {}).filter(([_, v]) => v !== undefined)),
+    ...Object.fromEntries(Object.entries(options?.subtle?.v86Options ?? {}).filter(([_, v]) => v !== undefined)),
   };
 
 
