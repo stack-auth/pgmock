@@ -98,7 +98,7 @@ export default function Home() {
             }
           }}
         >
-          {!mock ? "Downloading Postgres image..." : !client ? "Connecting to instance..." : queryLoadingCounter > 0 ? "..." : "Run query"}
+          {!mock ? "Downloading Postgres image... This may take a minute or two." : !client ? "Connecting to instance..." : queryLoadingCounter > 0 ? "..." : "Run query"}
         </button>
         <pre style={{ maxHeight: 100, overflowY: "scroll", backgroundColor: "rgba(0.5, 0.5, 0.5, 0.05)" }}>
           {queryResult}
