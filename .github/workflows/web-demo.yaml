@@ -2,7 +2,7 @@ name: Deploy web-demo to GitHub Pages
 
 on:
   push:
-    branches: [$default-branch]
+    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -17,8 +17,6 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      working-directory: ./examples/web-demo
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -32,6 +30,7 @@ jobs:
           # Automatically inject basePath in your Next.js configuration file and disable
           # server side image optimization (https://nextjs.org/docs/api-reference/next/image#unoptimized).
           static_site_generator: next
+          generator_config_file: examples/web-demo/next.config.mjs
       - name: Install root dependencies
         run: npm ci
       - name: Build root bundle
