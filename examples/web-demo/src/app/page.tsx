@@ -56,7 +56,13 @@ export default function Home() {
         color: "grey",
         fontSize: "0.8em",
       }}>
-        It is designed for use in unit and E2E testing, but can run standalone in-memory in a browser. For more information, check the repository linked above.
+        It is designed for use in unit and E2E testing, but can run standalone in-memory in a browser. For more information, check the <Link href="https://github.com/stackframe-projects/pgmock" target="_blank" rel="noopener noreferrer">pgmock repository</Link>.
+      </p>
+      <p style={{
+        color: "grey",
+        fontSize: "0.8em",
+      }}>
+        If your primary use case is to run a database in the browser (and only the browser), you might want to consider <Link href="https://github.com/electric-sql/pglite" target="_blank" rel="noopener noreferrer">pglite</Link> instead. It is more performant and lightweight (with a limited feature set). pgmock is designed for full compatibility with production PostgreSQL environments, as you would want in a testing environment.
       </p>
       <h2>node-postgres Queries</h2>
       <div>
