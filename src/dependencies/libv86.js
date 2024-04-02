@@ -14,7 +14,8 @@ export default module.exports;
 // v86 attempts to import Node.js crypto if we're not in a browser, but dynamic imports are bad. Provide a browser-like mock instead
 var crypto = {
   getRandomValues: function (array) {
-    nodecrypto.randomFillSync(array);
+    const view = new Uint8Array(array.buffer);
+    nodecrypto.randomFillSync(view);
   },
 };
 

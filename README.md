@@ -14,7 +14,7 @@ const mock = await PostgresMock.create();
 const connectionString = await mock.listen(5432);
 ```
 
-Recommended: If you use `node-postgres` (`pg` on npm), pgmock provides you with a configuration object that doesn't require you to serve on a port (and also works in the browser):
+Recommended: If you use `node-postgres` (`pg` on npm), `pgmock` provides you with a configuration object that doesn't require you to serve on a port (and also works in the browser):
 
 ```typescript
 const mock = await PostgresMock.create();
@@ -32,7 +32,7 @@ mock.destroy();
 
 ## Browser support
 
-`pgmock` fully supports browser environments. While webapps can't listen to TCP ports, you can still use `PostgresMock.createSocket` and the `node-postgres` configuration. However, please note that, if you decide to use it, `node-postgres` depends on some Node.js modules, so you may need to set up your bundler to polyfill them. You can find an example Next.js application in `examples/web-demo`.
+`pgmock` fully supports browser environments. While webapps can't listen to TCP ports, you can still use `PostgresMock.createSocket` and the `node-postgres` configuration. However, if your bundler statically analyzes imports, the default configuration may throw an error because of missing Node.js modules. Check `examples/web-demo/next.config.mjs` for an example on how to configure Webpack for bundling.
 
 ## How does it work?
 

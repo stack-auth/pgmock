@@ -5,8 +5,8 @@ import { PostgresConnectionSocket } from "./connectors/sockets.js";
 import { Logger } from "./logger.js";
 import { NetworkAdapter } from "./network-adapter.js";
 
-export type SerialTerminal = {
-  write(data: Uint8Array | string): void;
+export type SerialConsole = {
+  write(data: Uint8Array): void;
   onReceiveByte(callback: (byte: number) => void): void;
 };
 
@@ -22,13 +22,13 @@ export type PostgresMockCreationOptions = {
 export class PostgresMock {
   private _curPort = 12400;
   private _curShellScriptId = 0;
-  private readonly _serialTerminal: SerialTerminal;
+  private readonly _serialConsole: SerialConsole;
 
   private constructor(
     private _emulator: {
       network_adapter: NetworkAdapter,
       add_listener: (event: string, callback: (e: any) => void) => void,
-      serial0_send: (data: Uint8Array | string) => void,
+      serial0_send: (data: string) => void,
       destroy: () => void,
     } | null
   ) {
@@ -36,9 +36,14 @@ export class PostgresMock {
       throw new Error("Must use PostgresMock.create() to create a PostgresMock instance");
     }
 
-    this._serialTerminal = {
-      write: (data: Uint8Array | string) => {
-        _emulator.serial0_send(data);
+    this._serialConsole = {
+      write: (data: Uint8Array) => {
+        // v86 expects a UTF-8 string (instead of JS default UTF-16)
+        let dataStr = "";
+        for (const byte of data) {
+          dataStr += String.fromCharCode(byte);
+        }
+        _emulator.serial0_send(dataStr);
       },
       onReceiveByte: (callback: (byte: number) => void) => {
         _emulator.add_listener("serial0-output-byte", callback);
@@ -98,15 +103,14 @@ export class PostgresMock {
       throw new Error("Postgres emulator has already been destroyed!");
     }
 
-    const errorDesc = "listen() is only available in Node.js environments, but the `net` module was not found.";
     let net;
     try {
       net = await import("net");
     } catch (e) {
-      throw new Error(errorDesc);
+      net = null;
     }
     if (!net?.createServer) {
-      throw new Error(errorDesc);
+      throw new Error("listen() is only available in Node.js environments, but the `net` module was not found.");
     }
     Logger.log("Dependencies imported");
     
@@ -202,8 +206,8 @@ export class PostgresMock {
        * 
        * Meant to be used for visual debugging, and not for programmatic access.
        */
-      get serialTerminal() {
-        return that._serialTerminal;
+      get serialConsole() {
+        return that._serialConsole;
       }
     };
   }
