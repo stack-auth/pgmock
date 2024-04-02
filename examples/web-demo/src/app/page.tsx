@@ -98,7 +98,7 @@ export default function Home() {
             }
           }}
         >
-          {!client ? "Connecting to instance..." : queryLoadingCounter > 0 ? "..." : "Run query"}
+          {!mock ? "Downloading Postgres image..." : !client ? "Connecting to instance..." : queryLoadingCounter > 0 ? "..." : "Run query"}
         </button>
         <pre style={{ maxHeight: 100, overflowY: "scroll", backgroundColor: "rgba(0.5, 0.5, 0.5, 0.05)" }}>
           {queryResult}
@@ -147,7 +147,7 @@ export default function Home() {
           </div>
         </div>
       ) : (
-        <p>Downloading Postgres...</p>
+        <p>Downloading Postgres image...</p>
       )}
     </main>
   );
