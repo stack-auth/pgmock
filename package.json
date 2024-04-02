@@ -5,8 +5,8 @@
   "main": "dist/main.js",
   "types": "dist/main.d.ts",
   "scripts": {
-    "bundle": "tsup src/main.ts --sourcemap --dts",
-    "bundle:watch": "npm run bundle -- --watch"
+    "build": "tsup src/main.ts --sourcemap --dts",
+    "build:watch": "npm run bundle -- --watch"
   },
   "author": "",
   "license": "MIT",

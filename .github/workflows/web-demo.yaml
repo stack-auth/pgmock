@@ -32,14 +32,18 @@ jobs:
           # Automatically inject basePath in your Next.js configuration file and disable
           # server side image optimization (https://nextjs.org/docs/api-reference/next/image#unoptimized).
           static_site_generator: next
-      - name: Install dependencies
+      - name: Install root dependencies
         run: npm ci
-      - name: Build with Next.js
+      - name: Build root bundle
         run: npm run build
+      - name: Install web-demo dependencies
+        run: cd examples/web-demo && npm ci
+      - name: Build web-demo
+        run: cd examples/web-demo && npm run build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./out
+          path: ./examples/web-demo/out
 
   # Deployment job
   deploy:
