@@ -4,9 +4,10 @@
   "description": "In-memory Postgres for unit tests",
   "main": "dist/main.js",
   "types": "dist/main.d.ts",
+  "type": "module",
   "scripts": {
-    "build": "tsup src/main.ts --sourcemap --dts",
-    "build:watch": "npm run bundle -- --watch"
+    "build": "tsup src/main.ts --sourcemap --dts --splitting --format esm",
+    "build:watch": "npm run build -- --watch"
   },
   "author": "",
   "license": "MIT",

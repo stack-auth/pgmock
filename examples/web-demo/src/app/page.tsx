@@ -28,6 +28,7 @@ export default function Home() {
         insert into books (title) values ('The Catcher in the Rye');
       `);
       if (!cancelled) setClient(client);
+      await client.query(`select * from books;`);
       return () => {
         mock.destroy();
       };
