@@ -44,7 +44,7 @@ mock.destroy();
 
 ## Browser support
 
-`pgmock` fully supports browser environments. While webapps can't listen to TCP ports, you can still use `PostgresMock.createSocket` and the `node-postgres` configuration. However, if your bundler statically analyzes imports, the default configuration may throw an error because of missing Node.js modules. Check `examples/web-demo/next.config.mjs` for an example on how to configure Webpack for bundling.
+`pgmock` fully supports browser environments. While webapps can't listen to TCP ports, you can still use `PostgresMock.createSocket` and the `node-postgres` configuration. However, if your bundler statically analyzes imports, the default configuration may show a warning because of missing (optional) Node.js modules. Check `examples/web-demo/next.config.mjs` for an example on how to configure Webpack for bundling.
 
 If you're only looking to run a database in the browser, you might want to consider [pglite](https://github.com/electric-sql/pglite) instead. It is more performant and lightweight (with a limited feature set). `pgmock` is designed for feature parity with production PostgreSQL environments, as you would want in a testing environment.
 
