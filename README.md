@@ -12,7 +12,7 @@
 npm install pgmock
 ```
 
-See the [Browser support](#browser-support) section for detailed instructions for browsers.
+If you'd like to run `pgmock` in a browser, see the [Browser support](#browser-support) section for detailed instructions.
 
 ## Getting started
 After `npm install pgmock`, you can run an in-memory server like so:
