@@ -46,13 +46,13 @@ mock.destroy();
 
 `pgmock` fully supports browser environments. While webapps can't listen to TCP ports, you can still use `PostgresMock.createSocket` and the `node-postgres` configuration. However, if your bundler statically analyzes imports, the default configuration may show a warning because of missing (optional) Node.js modules. Check `examples/web-demo/next.config.mjs` for an example on how to configure Webpack for bundling.
 
-If you're only looking to run a database in the browser, you might want to consider [pglite](https://github.com/electric-sql/pglite) instead. It is more performant and lightweight (with a limited feature set). `pgmock` is designed for feature parity with production PostgreSQL environments, as you would want in a testing environment.
+If you're only looking to run a database in the browser, you might want to consider [pglite](https://github.com/electric-sql/pglite) instead. It is more performant and lightweight, but only has a limited feature set. `pgmock` is designed for feature parity with production PostgreSQL environments, as you would want in a testing environment.
 
 ## How does it work?
 
 There are two approaches to run Postgres in WebAssembly; by [forking it to support WASM natively](https://github.com/electric-sql/postgres-wasm) or by [emulating the Postgres server in an x86 emulator](https://supabase.com/blog/postgres-wasm). The former is more performant and uses considerably less memory, but only supports single-user mode (no connections), and cannot use any extensions.
 
-To prevent discrepancies between testing and production, and because performance is not usually a concern in tests, `pgmock` currently uses the latter approach. In the mid-term future, once native Postgres WASM forks mature, we plan to switch to that. We don't expect there to be many breaking changes besides the APIs inside `PostgresMock.subtle`.
+To prevent discrepancies between testing and production, and because performance is not usually a concern in tests, `pgmock` currently uses the latter approach. In the mid-term future, once native Postgres WASM forks mature, we plan to make both options available, and eventually, switch to native WASM as default. We don't expect there to be many breaking changes besides the APIs inside `PostgresMock.subtle`.
 
 `pgmock` differs from previous Postgres-in-the-browser projects by providing full feature-compatibility entirely inside the JavaScript runtime, without depending on a network proxy for communication. We did this by simulating a network stack in JavaScript that behaves like a real network, that can simulate TCP connections even on platforms that do not allow raw socket access.
 
