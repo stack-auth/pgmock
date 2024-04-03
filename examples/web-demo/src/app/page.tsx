@@ -63,13 +63,7 @@ export default function Home() {
         color: "grey",
         fontSize: "0.8em",
       }}>
-        If your primary use case is to run a database in the browser (and only the browser), you might want to consider <Link href="https://github.com/electric-sql/pglite" target="_blank" rel="noopener noreferrer">pglite</Link> instead. It is more performant and lightweight (with a limited feature set). pgmock is designed for full compatibility with production PostgreSQL environments, as you would want in a testing environment.
-      </p>
-      <p style={{
-        color: "grey",
-        fontSize: "0.8em",
-      }}>
-        The initial download may take a minute or two.
+        If your primary use case is to run a database in the browser (and only the browser), you might want to consider <Link href="https://github.com/electric-sql/pglite" target="_blank" rel="noopener noreferrer">pglite</Link> instead. It is more performant and lightweight (with a limited feature set). pgmock is designed for feature parity with production PostgreSQL environments, as you would want in a testing environment.
       </p>
       <h2>node-postgres Queries</h2>
       <div>

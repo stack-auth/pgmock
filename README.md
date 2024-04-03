@@ -6,10 +6,20 @@
 
 `pgmock` is an in-memory PostgreSQL mock server for unit and E2E tests. It requires no external dependencies and runs entirely within WebAssembly on both Node.js and the browser.
 
+## Installation
+
+```bash
+npm install pgmock
+```
+
+See the [Browser support](#browser-support) section for detailed instructions for browsers.
+
 ## Getting started
 After `npm install pgmock`, you can run an in-memory server like so:
 
 ```typescript
+import { PostgresMock } from "pgmock";
+
 const mock = await PostgresMock.create();
 const connectionString = await mock.listen(5432);
 ```
@@ -17,6 +27,8 @@ const connectionString = await mock.listen(5432);
 Recommended: If you use `node-postgres` (`pg` on npm), `pgmock` provides you with a configuration object that doesn't require you to serve on a port (and also works in the browser):
 
 ```typescript
+import * as pg from "pg";
+
 const mock = await PostgresMock.create();
 const client = new pg.Client(mock.getNodePostgresConfig());
 
@@ -34,7 +46,7 @@ mock.destroy();
 
 `pgmock` fully supports browser environments. While webapps can't listen to TCP ports, you can still use `PostgresMock.createSocket` and the `node-postgres` configuration. However, if your bundler statically analyzes imports, the default configuration may throw an error because of missing Node.js modules. Check `examples/web-demo/next.config.mjs` for an example on how to configure Webpack for bundling.
 
-If your primary use case is to run a database in the browser (and only the browser), you might want to consider [pglite](https://github.com/electric-sql/pglite) instead. It is more performant and lightweight (with a limited feature set). `pgmock` is designed for full compatibility with production PostgreSQL environments, as you would want in a testing environment.
+If you're only looking to run a database in the browser, you might want to consider [pglite](https://github.com/electric-sql/pglite) instead. It is more performant and lightweight (with a limited feature set). `pgmock` is designed for feature parity with production PostgreSQL environments, as you would want in a testing environment.
 
 ## How does it work?
 
@@ -47,3 +59,13 @@ To prevent discrepancies between testing and production, and because performance
 ## Wanna contribute? 
 
 Great! We have a [Discord server](https://discord.gg/pD4nyYyKrb) where you can talk to us.
+
+## Can this run other Docker images or databases?
+
+In theory, yes. I just haven't tested them. Ping me on our [Discord server](https://discord.gg/pD4nyYyKrb) if you're interested.
+
+## Acknowledgements
+
+- [v86](https://github.com/copy/v86), the x86 emulator which makes this possible
+- [Supabase & Snaplet](https://github.com/supabase/postgres-wasm) for building their own approach of running Postgres inside WebAssembly, which this is based on
+- [Stackframe](https://stackframe.co) for keeping me on a payroll while I was building `pgmock`
