@@ -15,7 +15,7 @@ npm install pgmock
 If you'd like to run `pgmock` in a browser, see the [Browser support](#browser-support) section for detailed instructions.
 
 ## Getting started
-After `npm install pgmock`, you can run an in-memory server like so:
+You can run an in-memory server like so:
 
 ```typescript
 import { PostgresMock } from "pgmock";
@@ -41,6 +41,10 @@ It is considered good practice to destroy the mock server after you are done wit
 ```typescript
 mock.destroy();
 ```
+
+## Documentation
+
+Check the [PostgresMock source file](https://github.com/stackframe-projects/pgmock/blob/main/src/postgres-mock.ts) for a list of all available methods and their documentation.
 
 ## Browser support
 
