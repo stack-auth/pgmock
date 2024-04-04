@@ -1,18 +1,24 @@
 {
   "name": "pgmock",
   "version": "1.0.0",
-  "description": "In-memory Postgres for unit tests",
+  "description": "In-memory Postgres for unit/E2E tests",
   "main": "dist/main.js",
   "types": "dist/main.d.ts",
   "type": "module",
+  "files": [
+    "dist"
+  ],
+  "homepage": "https://stackframe-projects.github.io/pgmock",
   "scripts": {
-    "build": "tsup src/main.ts --sourcemap --dts --splitting --format esm",
-    "build:watch": "npm run build -- --watch"
+    "build": "rimraf dist/ && tsup src/main.ts --dts --splitting --format esm",
+    "build-dev": "npm run build -- --sourcemap",
+    "build-dev:watch": "npm run build-dev -- --watch"
   },
-  "author": "",
+  "author": "Stan Wohlwend <n2d4xc@gmail.com>",
   "license": "MIT",
   "devDependencies": {
     "@types/node": "^20.12.2",
+    "rimraf": "^5.0.5",
     "tsup": "^8.0.2",
     "typescript": "^5.4.3"
   }
