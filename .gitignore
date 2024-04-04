@@ -1,3 +1,6 @@
+*.untracked
+*.untracked.*
+
 .DS_Store
 .localized
 

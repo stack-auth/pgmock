@@ -50,7 +50,7 @@ If you're only looking to run a database in the browser, you might want to consi
 
 ## How does it work?
 
-There are two approaches to run Postgres in WebAssembly; by [forking it to support WASM natively](https://github.com/electric-sql/postgres-wasm) or by [emulating the Postgres server in an x86 emulator](https://supabase.com/blog/postgres-wasm). The former is more performant and uses considerably less memory, but only supports single-user mode (no connections), and cannot use any extensions.
+There are two approaches to run Postgres in WebAssembly; by [forking it to support WASM natively](https://github.com/electric-sql/postgres-wasm) or by [emulating the Postgres server in an x86 emulator](https://supabase.com/blog/postgres-wasm). The former is more performant and uses considerably less memory, but only supports single-user mode (no connections), and no extensions.
 
 To prevent discrepancies between testing and production, and because performance is not usually a concern in tests, `pgmock` currently uses the latter approach. In the mid-term future, once native Postgres WASM forks mature, we plan to make both options available, and eventually, switch to native WASM as default. We don't expect there to be many breaking changes besides the APIs inside `PostgresMock.subtle`.
 
