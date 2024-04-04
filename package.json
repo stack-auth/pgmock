@@ -1,6 +1,6 @@
 {
   "name": "pgmock",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "In-memory Postgres for unit/E2E tests",
   "main": "dist/main.js",
   "types": "dist/main.d.ts",
