@@ -71,5 +71,5 @@ In theory, yes. I just haven't tested them. Ping me on our [Discord server](http
 ## Acknowledgements
 
 - [v86](https://github.com/copy/v86), the x86 emulator which makes this possible
-- [Supabase & Snaplet](https://github.com/supabase/postgres-wasm) for building their own approach of running Postgres inside WebAssembly, which this is based on
+- [Supabase & Snaplet](https://supabase.com/blog/postgres-wasm) for building their own approach of running Postgres inside WebAssembly, which this is based on
 - [Stackframe](https://stackframe.co) for keeping me on a payroll while I was building `pgmock`
