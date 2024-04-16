@@ -1,0 +1,29 @@
+name: Unit
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - src/**
+      - .github/workflows/test.yml
+      - package-lock.json
+      - package.json
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          cache: npm
+      - name: Install
+        run: |
+          npm install -g npm@latest
+          npm ci
+      - name: Prepack
+        run: npm run build
+      - name: Run Tests
+        run: npm run test
