@@ -19,7 +19,7 @@
     "build": "rimraf dist/ && tsup src/main.ts --dts --splitting --format esm,cjs",
     "build-dev": "npm run build -- --sourcemap",
     "build-dev:watch": "npm run build-dev -- --watch",
-    "test": "jest"
+    "test": "jest --detectOpenHandles --forceExit"
   },
   "author": "Stan Wohlwend <n2d4xc@gmail.com>",
   "license": "MIT",

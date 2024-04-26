@@ -8,5 +8,7 @@ it('should work', async () => {
 
     await client.connect();
     
-    console.log(await client.query('SELECT $1::text as message', ['Hello world!']));
+    expect(await client.query('SELECT $1::text as message', ['Hello world!'])).toMatchObject({ rows: [{ message: 'Hello world!' }] });
+
+    await client.end();
 })
