@@ -1494,7 +1494,7 @@ var crypto = {
   r.Bitmap = function (a) {
     "number" === typeof a
       ? (this.view = new Uint8Array((a + 7) >> 3))
-      : a instanceof ArrayBuffer && (this.view = new Uint8Array(a));
+      : Object.prototype.toString.call(a) === '[object ArrayBuffer]' && (this.view = new Uint8Array(a));
   };
   r.Bitmap.prototype.set = function (a, b) {
     const c = a >> 3;
@@ -1647,7 +1647,7 @@ var crypto = {
     r.AsyncFileBuffer = e;
     r.SyncFileBuffer = d;
     r.buffer_from_object = function (f, k) {
-      if (f.buffer instanceof ArrayBuffer) return new r.SyncBuffer(f.buffer);
+      if (Object.prototype.toString.call(f.buffer) === '[object ArrayBuffer]') return new r.SyncBuffer(f.buffer);
       if ("undefined" !== typeof File && f.buffer instanceof File)
         return (
           (k = f.async),
