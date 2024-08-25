@@ -1,7 +1,7 @@
 # pgmock
 <h3 align="center">
-  <a href="https://stackframe-projects.github.io/pgmock">Demo</a> —
-  <a href="https://discord.gg/pD4nyYyKrb">Discord</a>
+  <a href="https://stack-auth.github.io/pgmock">Demo</a> —
+  <a href="https://discord.stack-auth.com">Discord</a>
 </h3>
 
 `pgmock` is an in-memory PostgreSQL mock server for unit and E2E tests. It requires no external dependencies and runs entirely within WebAssembly on both Node.js and the browser.
