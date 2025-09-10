@@ -24,20 +24,23 @@
   "author": "Stan Wohlwend <n2d4xc@gmail.com>",
   "license": "MIT",
   "devDependencies": {
-    "@types/node": "^20.12.2",
-    "rimraf": "^5.0.5",
-    "tsup": "^8.0.2",
-    "typescript": "^5.4.3",
-    "jest": "*",
     "@swc/core": "*",
     "@swc/jest": "*",
     "@types/jest": "*",
+    "@types/node": "^20.12.2",
     "@types/pg": "*",
-    "pg": "*"
+    "jest": "*",
+    "pg": "*",
+    "rimraf": "^5.0.5",
+    "tsup": "^8.0.2",
+    "typescript": "^5.4.3"
   },
   "jest": {
     "transform": {
       "^.+\\.(t|j)sx?$": "@swc/jest"
     }
+  },
+  "dependencies": {
+    "@stackframe/js": "^2.8.36"
   }
 }
